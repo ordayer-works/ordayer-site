@@ -1,0 +1,183 @@
+/*
+  Ordayer design tokens, in two layers.
+
+  1. Primitives hold raw values: paper, ink, crimson and maroon, the two type families, the type
+     and space scales, and motion. Nothing outside this file uses a primitive.
+  2. Semantic tokens name a job (the ground, body text, the accent, the gap between sections) and
+     point at a primitive. Components use only these, so a change of look happens here, and a band
+     such as .theme-maroon only remaps semantic tokens.
+
+  Warm paper and ink, with crimson used as a painter would use one colour: rarely, and with intent.
+  Bodoni Moda carries headings and the wordmark; Jost, a Futura in the open, carries what people
+  read at length.
+*/
+
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("../fonts/bodoni-moda-latin.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("../fonts/bodoni-moda-latin-ext.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("../fonts/bodoni-moda-italic-latin.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("../fonts/bodoni-moda-italic-latin-ext.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/jost-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/jost-latin-ext.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* 1. Primitives */
+:root {
+  --paper-50: #f6f4f1;
+  --paper-100: #efebe5;
+  --paper-200: #e3ddd6;
+  --paper-300: #cfc6bc;
+  --ink-900: #16121a;
+  --ink-700: #3b3440;
+  --ink-600: #4b434c;
+  --ink-400: #7a7079;
+  --crimson-500: #c2223a;
+  --crimson-600: #a3162b;
+  --crimson-700: #82101f;
+  --maroon-900: #240910;
+  --maroon-800: #33101a;
+  --maroon-700: #4a1622;
+  --blush-100: #f4e8e6;
+  --blush-300: #d8bcbc;
+  --blush-400: #b39597;
+
+  --family-bodoni: "Bodoni Moda", "Didot", "Bodoni 72", "Times New Roman", serif;
+  --family-jost: "Jost", "Futura", "Century Gothic", ui-sans-serif, system-ui, sans-serif;
+
+  --weight-380: 380;
+  --weight-400: 400;
+  --weight-450: 450;
+  --weight-500: 500;
+
+  /* A type scale on a ratio of 1.333, from an 18px base. */
+  --size-15: 0.9375rem;
+  --size-18: 1.125rem;
+  --size-22: 1.375rem;
+  --size-30: 1.875rem;
+  --size-40: 2.5rem;
+  --size-53: 3.3125rem;
+  --size-71: 4.4375rem;
+  --size-112: 7rem;
+
+  --leading-display: 1;
+  --leading-tight: 1.12;
+  --leading-snug: 1.32;
+  --leading-body: 1.7;
+  --tracking-display: -0.02em;
+  --tracking-wide: 0.04em;
+
+  /* Space on a 4px base. */
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  --space-64: 4rem;
+  --space-96: 6rem;
+  --space-128: 8rem;
+  --space-176: 11rem;
+
+  --radius-0: 0;
+  --radius-full: 999px;
+
+  --duration-quick: 180ms;
+  --duration-paint: 1900ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-brush: cubic-bezier(0.55, 0.05, 0.3, 1);
+}
+
+/* 2. Semantic tokens */
+:root {
+  color-scheme: light;
+
+  --color-ground: var(--paper-50);
+  --color-ground-alt: var(--paper-100);
+  --color-line: var(--paper-200);
+  --color-line-strong: var(--paper-300);
+  --color-text: var(--ink-900);
+  --color-text-muted: var(--ink-600);
+  --color-text-subtle: var(--ink-400);
+  --color-accent: var(--crimson-600);
+  --color-accent-strong: var(--crimson-700);
+  --color-focus: var(--crimson-600);
+  --color-action: var(--ink-900);
+  --color-action-hover: var(--ink-700);
+  --color-on-action: var(--paper-50);
+
+  --font-display: var(--family-bodoni);
+  --font-text: var(--family-jost);
+  --weight-body: var(--weight-380);
+  --weight-strong: var(--weight-450);
+  --weight-heading: var(--weight-400);
+
+  --text-small: var(--size-15);
+  --text-body: var(--size-18);
+  --text-lead: clamp(var(--size-18), 0.9vw + 0.85rem, var(--size-22));
+  --text-heading: clamp(var(--size-30), 2vw + 1.1rem, var(--size-53));
+  --text-statement: clamp(var(--size-22), 1vw + 1.1rem, var(--size-30));
+  --text-display: clamp(3rem, 6.2vw + 0.4rem, var(--size-112));
+
+  --gap-text: var(--space-16);
+  --gap-section: clamp(var(--space-96), 10vw, var(--space-176));
+
+  --layout-max: 80rem;
+  --layout-pad: clamp(var(--space-16), 5.5vw, var(--space-96));
+  --layout-gutter: clamp(var(--space-16), 2.4vw, var(--space-48));
+
+  --radius-control: var(--radius-full);
+  --hairline: 1px;
+  --focus-ring: 0 0 0 2px var(--color-ground), 0 0 0 4px var(--color-focus);
+}

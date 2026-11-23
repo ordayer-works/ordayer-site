@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ordayer.com/sitemap.xml

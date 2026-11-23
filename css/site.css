@@ -1,0 +1,495 @@
+/* Base and components. Everything here reads semantic tokens from tokens.css, never a raw value.
+   A band such as .theme-maroon only remaps semantic tokens, so every component inside it follows. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--color-ground);
+}
+
+body {
+  margin: 0;
+  background: var(--color-ground);
+  color: var(--color-text);
+  font-family: var(--font-text);
+  font-weight: var(--weight-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* The faint tooth of good paper. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-heading);
+  text-wrap: balance;
+  font-optical-sizing: auto;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-control);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-action);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--layout-pad);
+  top: var(--space-16);
+  padding: var(--space-8) var(--space-16);
+  background: var(--color-action);
+  color: var(--color-on-action);
+  transform: translateY(-200%);
+  text-decoration: none;
+  z-index: 110;
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+/* Bands: the same components on another ground. */
+
+.theme-maroon {
+  --color-ground: var(--maroon-900);
+  --color-line: var(--maroon-700);
+  --color-text: var(--blush-100);
+  --color-text-muted: var(--blush-300);
+  --color-text-subtle: var(--blush-400);
+  --color-accent: var(--crimson-500);
+  --color-focus: var(--blush-300);
+  background:
+    radial-gradient(80% 120% at 100% 0%, var(--maroon-800) 0%, transparent 70%),
+    var(--color-ground);
+  color: var(--color-text);
+}
+
+/* Layout */
+
+.shell {
+  width: 100%;
+  max-width: calc(var(--layout-max) + 2 * var(--layout-pad));
+  margin-inline: auto;
+  padding-inline: var(--layout-pad);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--layout-gutter);
+}
+
+/* Header */
+
+.site-header {
+  padding-block: var(--space-32);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+}
+
+.logo {
+  display: inline-block;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.logo__art {
+  height: 1.5rem;
+  width: auto;
+  overflow: visible;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(var(--space-16), 3vw, var(--space-48));
+}
+
+.nav a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-small);
+  letter-spacing: var(--tracking-wide);
+  padding-block: var(--space-8);
+  white-space: nowrap;
+  transition: color var(--duration-quick) ease;
+}
+
+.nav a:hover {
+  color: var(--color-text);
+}
+
+/* On a phone the header keeps the two ways to reach us; the beliefs are one scroll away. */
+@media (max-width: 30rem) {
+  .nav__optional {
+    display: none;
+  }
+}
+
+/* Hero */
+
+.hero {
+  padding-block: clamp(var(--space-32), 4vw, var(--space-64)) var(--gap-section);
+}
+
+.hero__inner {
+  align-items: center;
+  row-gap: var(--space-48);
+}
+
+.hero__copy {
+  grid-column: 1 / span 6;
+  display: grid;
+  gap: var(--space-32);
+}
+
+.hero__title {
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  max-width: 8.5em;
+}
+
+.hero__lead {
+  font-size: var(--text-lead);
+  color: var(--color-text-muted);
+  max-width: 30em;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-16) var(--space-32);
+  padding-top: var(--space-8);
+}
+
+.hero__figure {
+  grid-column: 7 / span 6;
+  justify-self: end;
+  width: 100%;
+  max-width: 38rem;
+  margin: 0;
+  display: grid;
+  gap: var(--space-16);
+}
+
+/* The painting, and the brush stroke that paints it once as the page opens. */
+
+@property --sweep {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 364deg;
+}
+
+.artwork {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .artwork {
+    -webkit-mask-image: conic-gradient(from 52deg, #000 var(--sweep), transparent calc(var(--sweep) + 4deg));
+    mask-image: conic-gradient(from 52deg, #000 var(--sweep), transparent calc(var(--sweep) + 4deg));
+    animation: paint var(--duration-paint) var(--ease-brush) 250ms both;
+  }
+}
+
+@keyframes paint {
+  from {
+    --sweep: 0deg;
+  }
+  to {
+    --sweep: 364deg;
+  }
+}
+
+/* A gallery label for the painting. */
+.artwork__label {
+  justify-self: end;
+  text-align: right;
+  font-size: var(--text-small);
+  color: var(--color-text-subtle);
+  letter-spacing: var(--tracking-wide);
+}
+
+.artwork__label em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--size-18);
+  letter-spacing: 0;
+  color: var(--color-text);
+}
+
+/* Actions */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3.25rem;
+  padding: var(--space-12) var(--space-32);
+  border-radius: var(--radius-control);
+  background: var(--color-action);
+  color: var(--color-on-action);
+  font-weight: var(--weight-strong);
+  letter-spacing: var(--tracking-wide);
+  text-decoration: none;
+  transition: background-color var(--duration-quick) ease;
+}
+
+.button:hover {
+  background: var(--color-action-hover);
+}
+
+.text-link {
+  color: var(--color-text);
+  font-weight: var(--weight-strong);
+  letter-spacing: var(--tracking-wide);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-line-strong);
+  text-decoration-thickness: var(--hairline);
+  text-underline-offset: 0.4em;
+  transition: text-decoration-color var(--duration-quick) ease;
+}
+
+.text-link:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* Sections and bands */
+
+.section,
+.band {
+  padding-block: var(--gap-section);
+}
+
+.section__title {
+  grid-column: 1 / span 5;
+  font-size: var(--text-heading);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+}
+
+/* The name: one Latin word, set large, and what it means to us. */
+
+.name {
+  align-items: end;
+  row-gap: var(--space-32);
+}
+
+.name__word {
+  grid-column: 1 / span 6;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(6rem, 17vw, 15rem);
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  color: var(--color-accent);
+  padding-bottom: 0.06em;
+}
+
+.name__statement {
+  grid-column: 7 / span 6;
+  font-family: var(--font-display);
+  font-size: var(--text-statement);
+  line-height: var(--leading-snug);
+  color: var(--color-text);
+}
+
+.name__statement em {
+  font-style: italic;
+}
+
+/* What we believe */
+
+.principles {
+  row-gap: var(--space-64);
+}
+
+.principles__list {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-48) var(--layout-gutter);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.principle {
+  display: grid;
+  align-content: start;
+  gap: var(--gap-text);
+  padding-top: var(--space-24);
+  border-top: var(--hairline) solid var(--color-line-strong);
+}
+
+.principle__title {
+  font-size: var(--text-statement);
+  line-height: var(--leading-snug);
+}
+
+.principle__body {
+  color: var(--color-text-muted);
+}
+
+/* Careers and contact */
+
+.reach {
+  row-gap: var(--space-64);
+}
+
+.section + .section {
+  border-top: var(--hairline) solid var(--color-line);
+}
+
+.reach__item {
+  grid-column: span 6;
+  display: grid;
+  align-content: start;
+  gap: var(--space-24);
+}
+
+.reach__title {
+  font-size: var(--text-heading);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+}
+
+.reach__body {
+  color: var(--color-text-muted);
+  max-width: 30em;
+}
+
+.reach__address {
+  justify-self: start;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-statement);
+  color: var(--color-accent);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-line-strong);
+  text-decoration-thickness: var(--hairline);
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color var(--duration-quick) ease;
+}
+
+.reach__address:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* Footer */
+
+.site-footer {
+  padding-block: var(--space-48) var(--space-64);
+  border-top: var(--hairline) solid var(--color-line);
+  color: var(--color-text-subtle);
+  font-size: var(--text-small);
+  letter-spacing: var(--tracking-wide);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+}
+
+.site-footer .logo__art {
+  height: 1.2rem;
+}
+
+/* Smaller screens */
+
+@media (max-width: 64rem) {
+  .principles__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 60rem) {
+  .hero__copy {
+    grid-column: 1 / -1;
+  }
+
+  .hero__figure {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 24rem;
+  }
+
+  .section__title,
+  .name__word,
+  .name__statement,
+  .reach__item {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 36rem) {
+  .principles__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
