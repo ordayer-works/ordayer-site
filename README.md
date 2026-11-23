@@ -1,15 +1,17 @@
 # ordayer.com
 
-The Ordayer website: one static page, served by GitHub Pages from this repo's `main` branch. No build step: what is in the repo is what is served.
+The Ordayer website: one static page, served by GitHub Pages from this repo's `main` branch. No build step: the repo is served as it is, except the tools and this README (`_config.yml`).
 
 ## The brand in one minute
 
 - **The name** comes from *ordo*, Latin for order: the warm kind you feel when everything is where it should be.
 - **The logo** is ORDAYER in spaced Bodoni Moda capitals, with one letter painted by hand: its O is an ensō, the circle a calligrapher paints in a single stroke. Order, made by a person.
-- **The palette:** warm paper and ink, with crimson used as a painter would use one colour, rarely and with intent. A maroon band gives the page its heartbeat.
-- **The type:** Bodoni Moda for headings and the wordmark, Jost (an open Futura) for everything read at length.
+- **The palette:** warm paper and ink, with crimson used as a painter would use one colour, rarely and with intent.
+- **The type:** Bodoni Moda for large headings and the wordmark only, Jost (an open Futura) for everything people read, small headings included.
 - **The voice** is kind, gentle and clear, with a little quiet mystery. Say what we do for people, never what we do not do wrong.
 - **The one moment of motion:** the hero's ensō paints itself once, in a single sweep, as the page opens. People who prefer less motion see the finished painting.
+
+The whole system, with the looks we tried and turned down, is in `.claude/skills/ordayer-brand/SKILL.md`. Claude follows it on any new page, so read it before changing the look.
 
 ## Files
 
@@ -28,6 +30,7 @@ The Ordayer website: one static page, served by GitHub Pages from this repo's `m
 | `fonts/` | Bodoni Moda and Jost, self-hosted, with their licences (SIL Open Font License 1.1) |
 | `tools/enso.py` | Paints the ensō bristle by bristle, and draws its vector form |
 | `tools/brand.py` | Builds the logo files from Bodoni Moda's own outlines and the ensō |
+| `_config.yml` | Keeps the tools and this README off the website |
 
 ## Changing things
 
