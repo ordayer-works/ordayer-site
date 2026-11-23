@@ -162,13 +162,6 @@ a {
   color: var(--color-text);
 }
 
-/* On a phone the header keeps the two ways to reach us; the beliefs are one scroll away. */
-@media (max-width: 30rem) {
-  .nav__optional {
-    display: none;
-  }
-}
-
 /* Hero */
 
 .hero {
@@ -281,7 +274,7 @@ a {
   text-decoration-color: var(--color-accent);
 }
 
-/* Sections and bands */
+/* Sections */
 
 .section {
   padding-block: var(--gap-section);
@@ -292,12 +285,6 @@ a {
   padding-top: 0;
 }
 
-.section__title {
-  grid-column: 1 / span 5;
-  font-size: var(--text-heading);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-display);
-}
 
 /* What order means to us: one warm sentence, set large, and nothing around it. */
 
@@ -309,41 +296,6 @@ a {
   line-height: var(--leading-snug);
   letter-spacing: -0.01em;
   text-wrap: balance;
-}
-
-/* What we believe */
-
-.principles {
-  row-gap: var(--space-64);
-}
-
-.principles__list {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-48) var(--layout-gutter);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.principle {
-  display: grid;
-  align-content: start;
-  gap: var(--gap-text);
-  padding-top: var(--space-24);
-  border-top: var(--hairline) solid var(--color-line-strong);
-}
-
-.principle__title {
-  font-family: var(--font-text);
-  font-size: var(--size-22);
-  font-weight: var(--weight-strong);
-  line-height: var(--leading-snug);
-}
-
-.principle__body {
-  color: var(--color-text-muted);
 }
 
 /* Careers and contact */
@@ -414,12 +366,6 @@ a {
 
 /* Smaller screens */
 
-@media (max-width: 64rem) {
-  .principles__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 /* Stacked, the hero reads as one centred poster in the order the eye should take it: the painting,
    the headline, then the way to reach us. */
 @media (max-width: 60rem) {
@@ -449,7 +395,6 @@ a {
     justify-content: center;
   }
 
-  .section__title,
   .statement,
   .reach__item {
     grid-column: 1 / -1;
@@ -457,27 +402,13 @@ a {
 }
 
 /* On a phone the page keeps the same order with a tighter rhythm, so the first screen holds the
-   whole hero and the beliefs read as one list rather than four separate blocks. */
+   whole hero. */
 @media (max-width: 36rem) {
   .site-header {
     padding-block: var(--space-16);
   }
 
   .hero {
-    padding-top: var(--space-16);
-  }
-
-  .principles {
-    row-gap: var(--space-32);
-  }
-
-  .principles__list {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-32);
-  }
-
-  .principle {
-    gap: var(--space-8);
     padding-top: var(--space-16);
   }
 

@@ -52,7 +52,6 @@ HEADER = f"""<a class="skip-link" href="#main">Skip to content</a>
   <div class="shell site-header__inner">
     <a class="logo" href="/" aria-label="Ordayer home">{LOGO}</a>
     <nav class="nav" aria-label="Main">
-      <a class="nav__optional" href="/#believe">What we believe</a>
       <a href="/#careers">Careers</a>
       <a href="/#contact">Contact</a>
     </nav>
@@ -65,21 +64,6 @@ FOOTER = f"""<footer class="site-footer">
     <p>&copy; 2026 Ordayer. Made with care.</p>
   </div>
 </footer>"""
-
-BELIEFS = [
-    ("Care is the craft", "Every screen, every sentence and every second of waiting is part of someone&rsquo;s day. We build as if it were our own."),
-    ("Simple, on purpose", "Behind every simple thing is a great deal of careful work. We do that work, so it never lands on you."),
-    ("Honest, always", "We say what we do and we do what we say. Trust is the one thing we never spend."),
-    ("Here for the long run", "We build to last and to grow with the people who rely on us, for decades rather than quarters."),
-]
-
-BELIEF_ITEMS = "\n".join(
-    f"""        <li class="principle">
-          <h3 class="principle__title">{title}</h3>
-          <p class="principle__body">{body}</p>
-        </li>"""
-    for title, body in BELIEFS
-)
 
 INDEX_BODY = f"""
 <body>
@@ -104,15 +88,6 @@ INDEX_BODY = f"""
   <section class="section" aria-label="What order means to us">
     <div class="shell grid">
       <p class="statement">Not the cold, rigid kind of order. The warm kind you feel when everything is where it should be, and you can finally breathe.</p>
-    </div>
-  </section>
-
-  <section class="section" id="believe" aria-labelledby="believe-title">
-    <div class="shell grid principles">
-      <h2 class="section__title" id="believe-title">What we believe</h2>
-      <ul class="principles__list">
-{BELIEF_ITEMS}
-      </ul>
     </div>
   </section>
 

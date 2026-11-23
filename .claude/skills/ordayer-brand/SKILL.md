@@ -100,6 +100,9 @@ Do not propose these again; each was tried and rejected.
 - A 3D-lit ensō (Three.js): a change nobody would notice, for a large download.
 - A dark maroon band with the word "ordo" and its Latin meaning: filler.
 - A caption under the painting.
+- Four company values under "What we believe": generic lines any company could sign, and the
+  warm statement already says what we care about. The home page is the hero, that statement, then
+  careers and contact.
 - Light or thin body text, and Bodoni at small sizes: hard to read.
 
 ## Checking a change
