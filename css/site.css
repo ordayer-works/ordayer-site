@@ -1,5 +1,4 @@
-/* Base and components. Everything here reads semantic tokens from tokens.css, never a raw value.
-   A band such as .theme-maroon only remaps semantic tokens, so every component inside it follows. */
+/* Base and components. Everything here reads semantic tokens from tokens.css, never a raw value. */
 
 *,
 *::before,
@@ -102,22 +101,6 @@ a {
 
 .skip-link:focus-visible {
   transform: none;
-}
-
-/* Bands: the same components on another ground. */
-
-.theme-maroon {
-  --color-ground: var(--maroon-900);
-  --color-line: var(--maroon-700);
-  --color-text: var(--blush-100);
-  --color-text-muted: var(--blush-300);
-  --color-text-subtle: var(--blush-400);
-  --color-accent: var(--crimson-500);
-  --color-focus: var(--blush-300);
-  background:
-    radial-gradient(80% 120% at 100% 0%, var(--maroon-800) 0%, transparent 70%),
-    var(--color-ground);
-  color: var(--color-text);
 }
 
 /* Layout */
@@ -228,10 +211,8 @@ a {
   grid-column: 7 / span 6;
   justify-self: end;
   width: 100%;
-  max-width: 38rem;
+  max-width: 36rem;
   margin: 0;
-  display: grid;
-  gap: var(--space-16);
 }
 
 /* The painting, and the brush stroke that paints it once as the page opens. */
@@ -263,23 +244,6 @@ a {
   to {
     --sweep: 364deg;
   }
-}
-
-/* A gallery label for the painting. */
-.artwork__label {
-  justify-self: end;
-  text-align: right;
-  font-size: var(--text-small);
-  color: var(--color-text-subtle);
-  letter-spacing: var(--tracking-wide);
-}
-
-.artwork__label em {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: var(--size-18);
-  letter-spacing: 0;
-  color: var(--color-text);
 }
 
 /* Actions */
@@ -319,9 +283,13 @@ a {
 
 /* Sections and bands */
 
-.section,
-.band {
+.section {
   padding-block: var(--gap-section);
+}
+
+/* Straight after the hero, one gap is enough. */
+.hero + .section {
+  padding-top: 0;
 }
 
 .section__title {
@@ -331,34 +299,16 @@ a {
   letter-spacing: var(--tracking-display);
 }
 
-/* The name: one Latin word, set large, and what it means to us. */
+/* What order means to us: one warm sentence, set large, and nothing around it. */
 
-.name {
-  align-items: end;
-  row-gap: var(--space-32);
-}
-
-.name__word {
-  grid-column: 1 / span 6;
+.statement {
+  grid-column: 1 / span 9;
+  max-width: 22em;
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(6rem, 17vw, 15rem);
-  line-height: 0.8;
-  letter-spacing: -0.03em;
-  color: var(--color-accent);
-  padding-bottom: 0.06em;
-}
-
-.name__statement {
-  grid-column: 7 / span 6;
-  font-family: var(--font-display);
-  font-size: var(--text-statement);
+  font-size: clamp(1.75rem, 2.2vw + 0.9rem, var(--size-53));
   line-height: var(--leading-snug);
-  color: var(--color-text);
-}
-
-.name__statement em {
-  font-style: italic;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 /* What we believe */
@@ -386,7 +336,9 @@ a {
 }
 
 .principle__title {
-  font-size: var(--text-statement);
+  font-family: var(--font-text);
+  font-size: var(--size-22);
+  font-weight: var(--weight-strong);
   line-height: var(--leading-snug);
 }
 
@@ -424,19 +376,18 @@ a {
 
 .reach__address {
   justify-self: start;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: var(--text-statement);
-  color: var(--color-accent);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-strong);
+  color: var(--color-text);
   text-decoration-line: underline;
-  text-decoration-color: var(--color-line-strong);
+  text-decoration-color: var(--color-accent);
   text-decoration-thickness: var(--hairline);
-  text-underline-offset: 0.3em;
-  transition: text-decoration-color var(--duration-quick) ease;
+  text-underline-offset: 0.35em;
+  transition: text-decoration-thickness var(--duration-quick) ease;
 }
 
 .reach__address:hover {
-  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
 }
 
 /* Footer */
@@ -469,27 +420,68 @@ a {
   }
 }
 
+/* Stacked, the hero reads as one centred poster in the order the eye should take it: the painting,
+   the headline, then the way to reach us. */
 @media (max-width: 60rem) {
-  .hero__copy {
-    grid-column: 1 / -1;
+  .hero__inner {
+    row-gap: var(--space-32);
   }
 
   .hero__figure {
+    order: -1;
     grid-column: 1 / -1;
     justify-self: center;
-    max-width: 24rem;
+    width: min(64vw, 22rem);
+  }
+
+  .hero__copy {
+    grid-column: 1 / -1;
+    justify-items: center;
+    gap: var(--space-24);
+    text-align: center;
+  }
+
+  .hero__lead {
+    max-width: 24em;
+  }
+
+  .hero__actions {
+    justify-content: center;
   }
 
   .section__title,
-  .name__word,
-  .name__statement,
+  .statement,
   .reach__item {
     grid-column: 1 / -1;
   }
 }
 
+/* On a phone the page keeps the same order with a tighter rhythm, so the first screen holds the
+   whole hero and the beliefs read as one list rather than four separate blocks. */
 @media (max-width: 36rem) {
+  .site-header {
+    padding-block: var(--space-16);
+  }
+
+  .hero {
+    padding-top: var(--space-16);
+  }
+
+  .principles {
+    row-gap: var(--space-32);
+  }
+
   .principles__list {
     grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-32);
+  }
+
+  .principle {
+    gap: var(--space-8);
+    padding-top: var(--space-16);
+  }
+
+  .reach {
+    row-gap: var(--space-48);
   }
 }

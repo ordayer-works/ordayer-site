@@ -89,7 +89,7 @@ INDEX_BODY = f"""
     <div class="shell grid hero__inner">
       <div class="hero__copy">
         <h1 class="hero__title">Everything in its place.</h1>
-        <p class="hero__lead">Ordayer builds software and AI for the tangled, difficult problems, and quietly puts them in order, so the people we serve feel looked after and can simply enjoy what they came for.</p>
+        <p class="hero__lead">Ordayer builds software and AI for tangled, difficult problems, and quietly puts them in order, so the people we serve feel looked after.</p>
         <div class="hero__actions">
           <a class="button" href="mailto:contact@ordayer.com">Say hello</a>
           <a class="text-link" href="#careers">Build with us</a>
@@ -97,16 +97,13 @@ INDEX_BODY = f"""
       </div>
       <figure class="hero__figure">
         <img class="artwork" src="/assets/enso.webp" width="1800" height="1800" alt="A crimson ensō: a circle painted in a single brush stroke, heavy where the brush lands and dry where it lifts.">
-        <figcaption class="artwork__label"><em>Ensō</em>, a circle painted in one breath.</figcaption>
       </figure>
     </div>
   </section>
 
-  <section class="band theme-maroon" aria-labelledby="name-title">
-    <div class="shell grid name">
-      <h2 class="visually-hidden" id="name-title">Our name</h2>
-      <p class="name__word" lang="la" aria-hidden="true">ordo</p>
-      <p class="name__statement">Ordayer comes from <em lang="la">ordo</em>, the Latin word for order. Not the cold, rigid kind. The warm kind you feel when everything is where it should be, and you can finally breathe.</p>
+  <section class="section" aria-label="What order means to us">
+    <div class="shell grid">
+      <p class="statement">Not the cold, rigid kind of order. The warm kind you feel when everything is where it should be, and you can finally breathe.</p>
     </div>
   </section>
 

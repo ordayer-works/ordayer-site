@@ -1,0 +1,6 @@
+# GitHub Pages builds this repo with Jekyll. Only the website is served: the tools that make it,
+# the README and Claude's brand skill (in .claude, which Jekyll skips anyway) stay off ordayer.com.
+exclude:
+  - README.md
+  - tools
+  - work

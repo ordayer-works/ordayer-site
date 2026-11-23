@@ -1,15 +1,14 @@
 /*
   Ordayer design tokens, in two layers.
 
-  1. Primitives hold raw values: paper, ink, crimson and maroon, the two type families, the type
-     and space scales, and motion. Nothing outside this file uses a primitive.
+  1. Primitives hold raw values: paper, ink and crimson, the two type families, the type and space
+     scales, and motion. Nothing outside this file uses a primitive.
   2. Semantic tokens name a job (the ground, body text, the accent, the gap between sections) and
-     point at a primitive. Components use only these, so a change of look happens here, and a band
-     such as .theme-maroon only remaps semantic tokens.
+     point at a primitive. Components use only these, so a change of look happens here.
 
   Warm paper and ink, with crimson used as a painter would use one colour: rarely, and with intent.
-  Bodoni Moda carries headings and the wordmark; Jost, a Futura in the open, carries what people
-  read at length.
+  Bodoni Moda carries the large headings and the wordmark only: its hairlines vanish at small sizes.
+  Jost, a Futura in the open, carries everything people read, small headings included.
 */
 
 @font-face {
@@ -82,23 +81,13 @@
   --ink-900: #16121a;
   --ink-700: #3b3440;
   --ink-600: #4b434c;
-  --ink-400: #7a7079;
-  --crimson-500: #c2223a;
   --crimson-600: #a3162b;
   --crimson-700: #82101f;
-  --maroon-900: #240910;
-  --maroon-800: #33101a;
-  --maroon-700: #4a1622;
-  --blush-100: #f4e8e6;
-  --blush-300: #d8bcbc;
-  --blush-400: #b39597;
 
   --family-bodoni: "Bodoni Moda", "Didot", "Bodoni 72", "Times New Roman", serif;
   --family-jost: "Jost", "Futura", "Century Gothic", ui-sans-serif, system-ui, sans-serif;
 
-  --weight-380: 380;
   --weight-400: 400;
-  --weight-450: 450;
   --weight-500: 500;
 
   /* A type scale on a ratio of 1.333, from an 18px base. */
@@ -148,8 +137,9 @@
   --color-line: var(--paper-200);
   --color-line-strong: var(--paper-300);
   --color-text: var(--ink-900);
-  --color-text-muted: var(--ink-600);
-  --color-text-subtle: var(--ink-400);
+  /* Body text reads at length, so it stays dark: muted is a step down from ink, never grey. */
+  --color-text-muted: var(--ink-700);
+  --color-text-subtle: var(--ink-600);
   --color-accent: var(--crimson-600);
   --color-accent-strong: var(--crimson-700);
   --color-focus: var(--crimson-600);
@@ -159,19 +149,19 @@
 
   --font-display: var(--family-bodoni);
   --font-text: var(--family-jost);
-  --weight-body: var(--weight-380);
-  --weight-strong: var(--weight-450);
+  --weight-body: var(--weight-400);
+  --weight-strong: var(--weight-500);
   --weight-heading: var(--weight-400);
 
   --text-small: var(--size-15);
   --text-body: var(--size-18);
   --text-lead: clamp(var(--size-18), 0.9vw + 0.85rem, var(--size-22));
   --text-heading: clamp(var(--size-30), 2vw + 1.1rem, var(--size-53));
-  --text-statement: clamp(var(--size-22), 1vw + 1.1rem, var(--size-30));
-  --text-display: clamp(3rem, 6.2vw + 0.4rem, var(--size-112));
+  /* One step below the painting on purpose: the ensō is seen first, the headline second. */
+  --text-display: clamp(2.75rem, 5vw + 0.5rem, 5.5rem);
 
   --gap-text: var(--space-16);
-  --gap-section: clamp(var(--space-96), 10vw, var(--space-176));
+  --gap-section: clamp(var(--space-64), 9vw + 2rem, var(--space-176));
 
   --layout-max: 80rem;
   --layout-pad: clamp(var(--space-16), 5.5vw, var(--space-96));
