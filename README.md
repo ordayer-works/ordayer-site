@@ -31,7 +31,6 @@ The whole system, with the looks we tried and turned down, is in `.claude/skills
 | `tools/enso.py` | Paints the ensō bristle by bristle, and draws its vector form |
 | `tools/brand.py` | Builds the logo files from Bodoni Moda's own outlines and the ensō |
 | `_config.yml` | Keeps the tools and this README off the website |
-| `.claude/hooks/` | A guard that holds Claude back from starting heavy work, such as a test browser, while the computer is low on memory. Jekyll never publishes `.claude` |
 
 ## Changing things
 
