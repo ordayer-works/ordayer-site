@@ -5,17 +5,23 @@
 // Below this much available memory a computer starts swapping hard and every open window stalls.
 const FLOOR_GB = 1.5;
 
-// Flags may sit between a tool and its command, as in `pnpm --filter web build`.
-const FLAGS = String.raw`(\s+-[\w-]+(=\S+|\s+[^\s;&|-]\S*)?)*`;
-const RUNNER = String.raw`\b(pnpm|npm|yarn|bun)${FLAGS}\s+(run\s+)?`;
+// Flags may sit between a tool and its command, as in `pnpm --filter web build`. The flags that
+// name a package or folder always take the next word, so `pnpm --filter web exec` never reads the
+// package's name as the command.
+const NAMING = "filter|F|dir|C|prefix|workspace|w";
+const PACKAGE_FLAGS = String.raw`(\s+--?(${NAMING})(=|\s+)\S+|\s+-(?!-?(${NAMING})(?=[=\s]|$))[\w-]+(=\S+)?)*`;
+const RUNNER = String.raw`\b(pnpm|npm|yarn|bun)${PACKAGE_FLAGS}\s+(run\s+)?`;
+const DOCKER_FLAGS = String.raw`(\s+-[\w-]+(=\S+|\s+[^\s;&|-]\S*)?)*`;
 
-// Commands that start something holding hundreds of MB to a few GB while it runs.
+// Commands that start something holding hundreds of MB to a few GB while it runs: a dev server, a
+// build, a whole test run, a phone app's bundler, a container, a test browser.
 const HEAVY = [
   /\b(next|vite|astro|nuxt)\s+(dev|build|start)\b/,
-  new RegExp(String.raw`${RUNNER}(dev|start|build|preview|verify|check)\b`),
+  /\bexpo\s+(start|run)\b/,
+  new RegExp(String.raw`${RUNNER}(dev|start|build|preview|verify|check|web|ios|android)\b`),
   new RegExp(String.raw`${RUNNER}test\s*($|[;&|])`),
   /\bturbo\s+(run\s+)?\w/,
-  new RegExp(String.raw`\bdocker(\s+compose|-compose)?${FLAGS}\s+(up|run|start)\b`),
+  new RegExp(String.raw`\bdocker(\s+compose|-compose)?${DOCKER_FLAGS}\s+(up|run|start)\b`),
   /\bplaywright\s+test\b/,
 ];
 
